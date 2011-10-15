@@ -65,13 +65,17 @@
 	};
 	CssWithVars.prototype.setText = function(sText)
 	{
-		this.sText = sText + "";
+		this.sText = (sText + '').replace(/ +(?= )/g, '');
 		return this;
 	};
 	CssWithVars.prototype.setCssWithVars = function(sCssWithVars)
 	{
 		this.sCssWithVars = sCssWithVars;
 		return this;
+	};
+	CssWithVars.prototype.cleanAndMinimizeCode = function()
+	{
+		return this.sText.replace(/\t/g, '').replace(/\r/g, '').replace(/\n/g, '').replace(/ +(?= )/g, '');
 	};
 	CssWithVars.prototype.create = function(sText)
 	{
@@ -81,7 +85,7 @@
 			this.getCSS();
 		}
 		this.onCreate(this.sText);
-		return this.sText.replace(/\t/g, "");
+		return this.cleanAndMinimizeCode(this.sText);
 	};
 	CssWithVars.prototype.checkForVars = function()
 	{
@@ -154,8 +158,8 @@
 
 			sTextForLookRules = sTextForLookRules.substr(nPosRule + sRule.length);
 
-			var sCssInside = sTextForLookRules.substr(sTextForLookRules.indexOf("{")+1, sTextForLookRules.indexOf("}")-1);
-
+			var sCssInside = sTextForLookRules.substr(sTextForLookRules.indexOf("{") + 1, sTextForLookRules.indexOf("}") - 1);
+			sCssInside = sCssInside.replace("{", "").replace("}", "");
 			this.sText = this.sText.replace(sVarRegExp, sCssInside);
 		}
 	};

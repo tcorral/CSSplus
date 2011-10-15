@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<section>
-			<header>Develop faster CSS with CSS+</header>
+			<header>Develop faster CSS with CSSplus</header>
 			<form>
 				<legend>Form where retrieve the code to compile CSS</legend>
 				<fieldset>
@@ -22,17 +22,58 @@
 					<div>
 						<label>CSSplus code:</label>
 						<textarea name="css_content" id="css_content_id">
-block_display{	display:block;}
-none_display{	display:none;}
-yellow_background{	background-color: #ff0;}
-350px_width{	width:350px;}
-350px_height{	height:350px;}
-red_color{	color:#f00;}
-solid_black_border_top{	border-top:#000 1px solid;}
-solid_black_border_bottom{	border-bottom:#000 1px solid;}
-.prueba2{	[block_display]	[yellow_background]	[350px_width]	[350px_height]	[red_color]	[solid_black_border_top]}
-.prueba3{	[.prueba2]	[solid_black_border_bottom]}
-.prueba4{	font-size:20px;	[.prueba3]}
+.block_display
+{
+  display:block;
+}
+.none_display
+{
+  display:none;
+}
+.yellow_background
+{
+  background-color: #ff0;
+}
+.350px_width
+{
+  width:350px;
+}
+.350px_height
+{
+  height:350px;
+}
+.red_color
+{
+  color:#f00;
+}
+.solid_black_border_top
+{
+  border-top:#000 1px solid;
+}
+.solid_black_border_bottom
+{
+  border-bottom:#000 1px solid;
+}
+.prueba2
+{
+  [block_display]
+  [yellow_background]
+  [350px_width]
+  [350px_height]
+  [red_color]
+  [solid_black_border_top]
+}
+.prueba3
+{
+  [.prueba2]
+  [solid_black_border_bottom]
+}
+.prueba4
+{
+  font-size:20px;
+  [.prueba3]
+}
+
 						</textarea>
 					</div>
 					<div id="compile">
@@ -54,7 +95,7 @@ solid_black_border_bottom{	border-bottom:#000 1px solid;}
 				data: function(){
 					var oCssWithVars = new CssWithVars();
 					oCssWithVars.onCreate = function(sText){};
-					return oCssWithVars.create(document.getElementById("css_content_id").value);
+					return oCssWithVars.create(document.getElementById("css_content_id").value.replace(/\n/g,"").replace(/\r/g,"").replace(/\t/g,""));
 				},
 				onComplete: function(){ alert('Your File Has Been Saved!'); },
 				onCancel: function(){ alert('You have cancelled the saving of this file.'); },
