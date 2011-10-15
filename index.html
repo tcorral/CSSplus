@@ -8,6 +8,11 @@
 		<script type="text/javascript" src="js/swfobject.js"></script>
 		<script type="text/javascript" src="js/downloadify.min.js"></script>
 		<link href="css/formCss.css" rel="stylesheet" type="text/css"/>
+		<!-- Page styles -->
+		<link type='text/css' href='css/demo.css' rel='stylesheet' media='screen' />
+
+		<!-- OSX Style CSS files -->
+		<link type='text/css' href='css/osx.css' rel='stylesheet' media='screen' />
 	</head>
 	<body>
 		<section>
@@ -82,6 +87,37 @@
 				</fieldset>
 			</form>
 		</section>
+
+
+		<div id="osx-modal-content">
+			<div id="osx-modal-title">How works CSSplus compiler-minimizer</div>
+			<div class="close"><a href="#" class="simplemodal-close">x</a></div>
+			<div id="osx-modal-data">
+				<h2>Welcome to CSSplus compiler-minimizer!</h2>
+				<p>CSSplus is an implementation of CSS that accept variables to not duplicate code in development code.</p>
+				<p>You can use all the CSS 2, CSS 3 properties without any restriction.</p>
+				<p>Variables:</p>
+				<p class="mLeft20px">To put the content of a rule in other rules we only need to put the name of the rule inside two keys.</p>
+				<p class="mLeft30px">In this way:<br/>
+					<pre>
+	.block_display
+	{
+	  display:block;
+	}
+	.include_block_display
+	{
+		<b>[.block_display]</b>
+		/* Other variables or styles */
+	}
+
+					</pre>
+				</p>
+				<p><button class="simplemodal-close">Close</button> <span>(or press ESC or click the overlay)</span></p>
+			</div>
+		</div>
+
+		<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+		<script type='text/javascript' src='js/osx.js'></script>
 		 <script type="text/javascript">
 	    	Downloadify.create('compile',{
 				filename: function(){
