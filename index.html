@@ -1,77 +1,71 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-  <meta charset='utf-8'>
-
-  <title>tcorral/CSSplus @ GitHub</title>
-
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #c82cca;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #37d335; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #37d335; }
-    h3 { text-align: center; color: #37d335; }
-    a { color: #37d335; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
-
-<body>
-  <a href="http://github.com/tcorral/CSSplus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/tcorral/CSSplus/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/tcorral/CSSplus/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/tcorral/CSSplus">CSSplus</a>
-      <span class="small">by <a href="http://github.com/tcorral">tcorral</a></span></h1>
-
-    <div class="description">
-      Compile CSS using variables to speed your development
-    </div>
-
-    <h2>Authors</h2>
-<p>Tomas Corral Casas (amischol@gmail.com)<br/>      </p>
-<h2>Contact</h2>
-<p>Tomás Corral Casas (amischol@gmail.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/tcorral/CSSplus/zipball/master">zip</a> or
-      <a href="http://github.com/tcorral/CSSplus/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/tcorral/CSSplus</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/tcorral/CSSplus">tcorral/CSSplus</a>
-    </div>
-
-  </div>
-
-  
-</body>
+	<head>
+		<title>CSSplus</title>
+		<script type="text/javascript" src="js/jquery-1.6.4.js"></script>
+		<script type="text/javascript" src='js/jquery.utilities.js'></script>
+		<script type="text/javascript" src='js/createCSSwithVars.js'></script>
+		<script type="text/javascript" src="js/swfobject.js"></script>
+		<script type="text/javascript" src="js/downloadify.min.js"></script>
+		<link href="css/formCss.css" rel="stylesheet" type="text/css"/>
+	</head>
+	<body>
+		<section>
+			<header>Develop faster CSS with CSS+</header>
+			<form>
+				<legend>Form where retrieve the code to compile CSS</legend>
+				<fieldset>
+					<div>
+						<label>File name:</label>
+						<input type="text" name="filename" id="filename_id" value="default"/>
+					</div>
+					<div>
+						<label>CSSplus code:</label>
+						<textarea name="css_content" id="css_content_id">
+block_display{	display:block;}
+none_display{	display:none;}
+yellow_background{	background-color: #ff0;}
+350px_width{	width:350px;}
+350px_height{	height:350px;}
+red_color{	color:#f00;}
+solid_black_border_top{	border-top:#000 1px solid;}
+solid_black_border_bottom{	border-bottom:#000 1px solid;}
+.prueba2{	[block_display]	[yellow_background]	[350px_width]	[350px_height]	[red_color]	[solid_black_border_top]}
+.prueba3{	[.prueba2]	[solid_black_border_bottom]}
+.prueba4{	font-size:20px;	[.prueba3]}
+						</textarea>
+					</div>
+					<div id="compile">
+						You must have Flash 10 installed to make this work.
+					</div>
+				</fieldset>
+			</form>
+		</section>
+		 <script type="text/javascript">
+	    	Downloadify.create('compile',{
+				filename: function(){
+					var sValue = document.getElementById('filename_id').value.replace(".css", "");
+					if(sValue.length === 0)
+					{
+						sValue = "default";
+					}
+					return sValue + ".css";
+				},
+				data: function(){
+					var oCssWithVars = new CssWithVars();
+					oCssWithVars.onCreate = function(sText){};
+					return oCssWithVars.create(document.getElementById("css_content_id").value);
+				},
+				onComplete: function(){ alert('Your File Has Been Saved!'); },
+				onCancel: function(){ alert('You have cancelled the saving of this file.'); },
+				onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+				swf: 'media/downloadify.swf',
+				downloadImage: 'images/download.png',
+				width: 100,
+				height: 30,
+				transparent: true,
+				append: false
+			});
+		</script>
+	</body>
 </html>

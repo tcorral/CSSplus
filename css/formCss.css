@@ -1,0 +1,69 @@
+body
+{
+	margin: 0 auto;
+	width: 1000px;
+	background-color: #222222;
+	font-family: "Arial", sans-serif;
+	font-size: 14px;
+}
+header
+{
+	background-color: #63bf00;
+	height: 30px;
+	width: 990px;
+	border-bottom: #1f3a01 2px solid;
+	padding-top: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+body>section
+{
+	width: 1000px;
+	height: 700px;
+	border: #000 1px solid;
+	margin-top: 20px;
+	background-color:#1e1e1d;
+}
+fieldset
+{
+	margin: 0;
+	padding: 0;
+	border: none;
+	padding: 40px;
+}
+input, textarea
+{
+	background-color: #282828;
+	border: #000 1px solid;
+	color: #ccc;
+	font-family:"Courier New", Courier, monospace;
+}
+input[type=text]
+{
+	width: 900px;
+	height: 20px;
+	margin-bottom: 20px;
+}
+#compile
+{
+	float: right;
+	margin-right: 15px;
+	margin-top: 20px;
+	color: #ccc;
+}
+textarea
+{
+	width: 900px;
+	height: 420px;
+}
+label
+{
+	display:block;
+	color: #aaaaaa;
+	height: 30px;
+	padding-top: 5px;
+}
+legend
+{
+	display:none;
+}
